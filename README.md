@@ -5,4 +5,4 @@
 3. urllib module
 
 Here is sample video of it 
-[![](http://img.youtube.com/vi/5X1dXTrAJM8/0.jpg)](http://www.youtube.com/watch?v=5X1dXTrAJM8 "Video Download")
+[![Video Downloader](http://img.youtube.com/vi/5X1dXTrAJM8/0.jpg)](http://www.youtube.com/watch?v=5X1dXTrAJM8 "Video Downloader")
