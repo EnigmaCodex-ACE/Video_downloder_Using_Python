@@ -8,40 +8,41 @@ import urllib.request
 
 class Download(QDialog):
     def __init__(self):
-        QDialog.__init__(self)
+        super().__init__()  # Using `super()` is cleaner
+
+        # Create the layout
         layout = QVBoxLayout()
-        l1 = QLabel()
-        l1.setText("URL:")
-        self.url = QLineEdit()
-        l2 = QLabel()
-        l2.setText("Save Location:")
-        self.save_location = QLineEdit()
-        browse = QPushButton("Browse")
-        self.progress = QProgressBar()
-        download = QPushButton("Download")
 
-        self.url.setPlaceholderText("URL")
-        self.save_location.setPlaceholderText("File Save Location")
+        # Create and configure the widgets
+        self.url_label = QLabel("URL:")
+        self.url = QLineEdit(placeholderText="URL")
 
-        self.progress.setValue(0)
-        self.progress.setAlignment(Qt.AlignHCenter)
+        self.save_location_label = QLabel("Save Location:")
+        self.save_location = QLineEdit(placeholderText="File Save Location")
 
-        layout.addWidget(l1)
+        browse_button = QPushButton("Browse")
+        self.progress = QProgressBar(value=0, alignment=Qt.AlignHCenter)
+
+        download_button = QPushButton("Download")
+
+        # Add widgets to layout
+        layout.addWidget(self.url_label)
         layout.addWidget(self.url)
-        layout.addWidget(l2)
-
+        layout.addWidget(self.save_location_label)
         layout.addWidget(self.save_location)
-        layout.addWidget(browse)
+        layout.addWidget(browse_button)
         layout.addWidget(self.progress)
-        layout.addWidget(download)
+        layout.addWidget(download_button)
 
         self.setLayout(layout)
-        
+
+        # Configure dialog window
         self.setWindowTitle("Pydownloader")
         self.setFocus()
 
-        download.clicked.connect(self.download)
-        browse.clicked.connect(self.browser_file)
+        # Connect signals to methods
+        download_button.clicked.connect(self.download)
+        browse_button.clicked.connect(self.browse_file)
 
     def browser_file(self):
         save_file = QFileDialog.getSaveFileName(
